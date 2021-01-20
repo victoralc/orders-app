@@ -12,11 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/orders")
-public class OrderAPI {
+public class OrderApi {
 
     private OrderRepository orderRepository;
 
-    public OrderAPI(OrderRepository orderRepository) {
+    public OrderApi(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
 

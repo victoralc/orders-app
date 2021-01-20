@@ -12,11 +12,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/offers")
-public class OffersAPI {
+public class OffersApi {
 
     private OrderRepository orderRepository;
 
-    public OffersAPI(OrderRepository orderRepository) {
+    public OffersApi(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
 
@@ -24,7 +24,7 @@ public class OffersAPI {
     public Offer createOffer(@RequestBody NewOfferRequest offerRequest) {
         Optional<Order> optionalOrder = this.orderRepository.findById(offerRequest.getOrderId());
         if (!optionalOrder.isPresent()) {
-            throw new RuntimeException("Nenhum pedido encontrado para id: " + offerRequest.getOrderId());
+            throw new RuntimeException("No order found for id: " + offerRequest.getOrderId());
         }
 
         Order order = optionalOrder.get();
