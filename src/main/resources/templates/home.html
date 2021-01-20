@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{base :: head}"></head>
+<body>
+    <div th:replace="~{base :: logo}"></div>
+    <div class="container">
+        <div th:replace="~{base :: titulo('Ultimos Pedidos')}"></div>
+
+        <div class="card mb-3" th:each="pedido : ${orders}">
+            <div class="card-header" th:text="${pedido.productName}">Nome do produto</div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-sm-8 mb-3">
+
+                        <div class="row">
+                            <div class="col-md-5">Valor: <span th:if="${pedido.valueDeal != null}" th:text="${'R$' + #numbers.formatDecimal(pedido.valueDeal, 3, 'POINT', 2, 'COMMA')}">200,99</span></div>
+                            <div class="col-md-7">Data da entrega: <span th:text="${#temporals.format(pedido.deliveryDate, 'dd/MM/yyy')}">10/02/2020</span></div>
+                        </div>
+
+                        <div>Produto</div>
+                        <div><input type="text" class="form-control" th:value="${pedido.urlProduct}" value="url do produto"></div>
+                        <div>Descricao</div>
+                        <div>
+                            <textarea name="productDescription" id="productDescription" class="form-control"
+                                      cols="30" rows="10" th:text="${pedido.description}">Descricao do Pedido</textarea>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <div>
+                            <img class="img-thumbnail" th:src="${pedido.urlImage}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
